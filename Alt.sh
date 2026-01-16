@@ -1,8 +1,8 @@
 echo -e "..."
 
-port = 1337
-username = "aaa"
-password = "aaa"
+port=1337
+username="aaa"
+password="aaa"
 
 if command -v danted &> /dev/null; then
   sudo apt update -y
