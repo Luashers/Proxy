@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 echo -e "..."
 
@@ -55,7 +54,10 @@ sudo systemctl enable danted
 if systemctl is-active --quiet danted; then
   sudo useradd --shell /usr/sbin/nologin "$username"
   echo "$username:$password" | sudo chpasswd
-  echo -e "done."
+  ip=$(hostname -I | awk '{print $1}')
+  echo -e "IP & Port: $ip:$port"
+  echo -e "Username : $username"
+  echo -e "Password : $password"
 else
   echo -e "Dante failed to continue."
 fi
