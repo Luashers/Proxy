@@ -1,3 +1,6 @@
+#!/bin/bash
+set -x
+
 echo -e "..."
 
 port=1337
